@@ -1,0 +1,158 @@
+---
+import Page from './Page.astro';
+
+interface Props {
+  title: string;
+  date: string;
+  tag: string;
+  image: string;
+  author?: string;
+  readTime?: string;
+}
+
+const { title, date, tag, image, author = 'Equipo VidaSegura', readTime = '5 min' } = Astro.props;
+---
+
+<Page title={title} description={title}>
+  <article class="blog-post">
+    <header class="post-header">
+      <div class="container">
+        <a href="/blog" class="back-link">← Volver al blog</a>
+        <span class="tag">{tag}</span>
+        <h1 class="post-title">{title}</h1>
+        <div class="post-meta">
+          <span>📅 {date}</span>
+          <span>👤 {author}</span>
+          <span>⏱ {readTime} de lectura</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-image">
+      <img src={image} alt={title} />
+    </div>
+
+    <div class="container post-content">
+      <slot />
+
+      <div class="post-cta">
+        <h3>Protege tu salud hoy</h3>
+        <p>Un seguro oncológico te brinda la tranquilidad de saber que estarás protegido. Conoce nuestros planes desde S/ 49/mes.</p>
+        <a href="/planes" class="btn btn-accent">Ver Planes</a>
+      </div>
+
+      <div class="post-nav">
+        <a href="/blog" class="btn btn-outline btn-sm">← Volver al blog</a>
+      </div>
+    </div>
+  </article>
+</Page>
+
+<style>
+  .post-header {
+    padding: 8rem 0 2rem;
+    background: linear-gradient(180deg, var(--color-light), var(--color-white));
+  }
+  .back-link {
+    font-size: 0.85rem;
+    color: var(--color-accent);
+    font-weight: 500;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--color-primary); }
+  .post-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--color-primary-dark);
+    margin: 0.75rem 0 1rem;
+    max-width: 750px;
+  }
+  .post-meta {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+  }
+  .post-image {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .post-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+  }
+  .post-content {
+    max-width: 760px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  .post-content :global(h2) {
+    font-size: 1.6rem;
+    color: var(--color-primary-dark);
+    margin: 2.5rem 0 1rem;
+  }
+  .post-content :global(h3) {
+    font-size: 1.25rem;
+    color: var(--color-primary-dark);
+    margin: 2rem 0 0.75rem;
+  }
+  .post-content :global(p) {
+    font-size: 1rem;
+    color: var(--color-gray-600);
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+  }
+  .post-content :global(ul), .post-content :global(ol) {
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .post-content :global(li) {
+    font-size: 1rem;
+    color: var(--color-gray-600);
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+    list-style: disc;
+  }
+  .post-content :global(strong) {
+    color: var(--color-primary-dark);
+  }
+  .post-content :global(blockquote) {
+    border-left: 3px solid var(--color-accent);
+    padding: 1rem 1.5rem;
+    background: var(--color-gray-50);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--color-gray-600);
+  }
+  .post-cta {
+    background: linear-gradient(135deg, var(--color-light), rgba(6,182,212,0.05));
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(6,182,212,0.15);
+    text-align: center;
+    margin: 3rem 0;
+  }
+  .post-cta h3 {
+    font-size: 1.3rem;
+    color: var(--color-primary-dark);
+    margin-bottom: 0.5rem;
+  }
+  .post-cta p {
+    color: var(--color-text-light);
+    margin-bottom: 1rem;
+  }
+  .post-nav {
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-gray-200);
+  }
+
+  @media (max-width: 768px) {
+    .post-image img { height: 250px; }
+  }
+</style>

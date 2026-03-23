@@ -1,0 +1,73 @@
+---
+const coverages = [
+  { icon: '💊', title: 'Quimioterapia', desc: 'Cobertura completa de tratamientos quimioterapéuticos en clínicas de primer nivel.' },
+  { icon: '☢', title: 'Radioterapia', desc: 'Sesiones de radioterapia con tecnología de última generación incluidas.' },
+  { icon: '🔬', title: 'Cirugías Oncológicas', desc: 'Procedimientos quirúrgicos especializados con los mejores cirujanos oncólogos.' },
+  { icon: '💉', title: 'Inmunoterapia', desc: 'Acceso a tratamientos de inmunoterapia y terapias biológicas avanzadas.' },
+  { icon: '🧪', title: 'Exámenes y Diagnóstico', desc: 'Estudios de laboratorio, biopsias, tomografías y resonancias magnéticas.' },
+  { icon: '🧠', title: 'Apoyo Psicológico', desc: 'Acompañamiento psicológico para el paciente y su familia durante todo el tratamiento.' },
+  { icon: '💊', title: 'Medicamentos', desc: 'Cobertura de medicamentos oncológicos de alto costo sin copagos adicionales.' },
+  { icon: '🏠', title: 'Cuidados Paliativos', desc: 'Atención domiciliaria y cuidados paliativos cuando sea necesario.' },
+];
+---
+
+<section class="coverage section">
+  <div class="container">
+    <div class="section-header center">
+      <p class="section-label">🛡 Cobertura</p>
+      <h2 class="section-title">¿Qué cubre tu seguro oncológico?</h2>
+      <p class="section-subtitle">Una cobertura completa diseñada para acompañarte en cada etapa del tratamiento.</p>
+    </div>
+    <div class="coverage-grid">
+      {coverages.map(c => (
+        <div class="coverage-card">
+          <span class="coverage-icon">{c.icon}</span>
+          <h3 class="coverage-title">{c.title}</h3>
+          <p class="coverage-desc">{c.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .coverage { background: var(--color-light); }
+  .coverage-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .coverage-card {
+    background: var(--color-white);
+    padding: 2rem 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-gray-100);
+    transition: all 0.3s;
+  }
+  .coverage-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+    border-color: rgba(6,182,212,0.2);
+  }
+  .coverage-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .coverage-title {
+    font-size: 1rem;
+    color: var(--color-primary-dark);
+    margin-bottom: 0.5rem;
+  }
+  .coverage-desc {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+  }
+  @media (max-width: 768px) {
+    .coverage-grid { grid-template-columns: 1fr; }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .coverage-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

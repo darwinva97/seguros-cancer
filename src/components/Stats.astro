@@ -1,0 +1,55 @@
+---
+const stats = [
+  { number: '50,000+', label: 'Asegurados', icon: '👥' },
+  { number: '98%', label: 'Satisfacción', icon: '⭐' },
+  { number: '120+', label: 'Clínicas Afiliadas', icon: '🏥' },
+  { number: '24/7', label: 'Atención', icon: '📞' },
+];
+---
+
+<section class="stats">
+  <div class="container stats-grid">
+    {stats.map(s => (
+      <div class="stat-item">
+        <span class="stat-icon">{s.icon}</span>
+        <span class="stat-number">{s.number}</span>
+        <span class="stat-label">{s.label}</span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .stats {
+    background: var(--color-primary-dark);
+    padding: 3rem 0;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .stat-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .stat-number {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-white);
+  }
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--color-gray-400);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 0.2rem;
+  }
+  @media (max-width: 768px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

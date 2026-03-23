@@ -1,0 +1,121 @@
+---
+const steps = [
+  {
+    step: '01',
+    title: 'Elige tu plan',
+    description: 'Compara nuestros planes y elige la cobertura que mejor se adapte a tus necesidades y presupuesto.',
+    icon: '📋',
+  },
+  {
+    step: '02',
+    title: 'Regístrate en línea',
+    description: 'Completa tu solicitud en minutos. Sin exámenes médicos previos ni trámites complicados.',
+    icon: '💻',
+  },
+  {
+    step: '03',
+    title: 'Activa tu cobertura',
+    description: 'Tu seguro se activa desde el día 1. Recibe tu póliza digital y credencial de forma inmediata.',
+    icon: '✅',
+  },
+  {
+    step: '04',
+    title: 'Atención garantizada',
+    description: 'Accede a una red de más de 120 clínicas y centros oncológicos especializados en todo el Perú.',
+    icon: '🏥',
+  },
+];
+---
+
+<section class="how section" id="como-funciona">
+  <div class="container">
+    <div class="section-header center">
+      <p class="section-label">¿Cómo Funciona?</p>
+      <h2 class="section-title">Tu protección en 4 simples pasos</h2>
+      <p class="section-subtitle">Activar tu seguro oncológico nunca fue tan fácil. Sin burocracia, sin complicaciones.</p>
+    </div>
+    <div class="steps-grid">
+      {steps.map((s, i) => (
+        <div class="step-card">
+          <div class="step-top">
+            <span class="step-icon">{s.icon}</span>
+            <span class="step-number">{s.step}</span>
+          </div>
+          <h3 class="step-title">{s.title}</h3>
+          <p class="step-desc">{s.description}</p>
+          {i < steps.length - 1 && <div class="step-arrow">→</div>}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .step-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: var(--radius-lg);
+    background: var(--color-gray-50);
+    border: 1px solid var(--color-gray-100);
+    position: relative;
+    transition: all 0.3s;
+  }
+  .step-card:hover {
+    background: var(--color-white);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+  .step-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .step-icon { font-size: 2rem; }
+  .step-number {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--color-accent);
+    background: rgba(6,182,212,0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full);
+  }
+  .step-title {
+    font-size: 1.1rem;
+    color: var(--color-primary-dark);
+    margin-bottom: 0.5rem;
+  }
+  .step-desc {
+    font-size: 0.88rem;
+    color: var(--color-text-light);
+    line-height: 1.7;
+  }
+  .step-arrow {
+    display: none;
+    position: absolute;
+    right: -1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--color-gray-300);
+    z-index: 1;
+  }
+
+  @media (min-width: 769px) {
+    .step-arrow { display: block; }
+  }
+  @media (max-width: 768px) {
+    .steps-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .step-arrow { display: none; }
+  }
+</style>

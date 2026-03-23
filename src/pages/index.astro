@@ -1,0 +1,90 @@
+---
+import Page from '../layouts/Page.astro';
+import Hero from '../components/Hero.astro';
+import Stats from '../components/Stats.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Coverage from '../components/Coverage.astro';
+import Plans from '../components/Plans.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FAQ from '../components/FAQ.astro';
+import CTA from '../components/CTA.astro';
+import Contact from '../components/Contact.astro';
+import PostCard from '../components/PostCard.astro';
+
+const featuredPosts = [
+  {
+    title: '5 señales de alerta del cáncer que no debes ignorar',
+    excerpt: 'Conoce los síntomas tempranos más comunes que podrían indicar la presencia de cáncer y cuándo acudir al médico.',
+    date: '15 Mar 2026',
+    tag: 'Prevención',
+    slug: 'senales-alerta-cancer',
+    image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=600&q=80',
+  },
+  {
+    title: 'La importancia del chequeo oncológico anual',
+    excerpt: 'Un chequeo preventivo anual puede detectar el cáncer en etapas tempranas, aumentando significativamente las posibilidades de cura.',
+    date: '10 Mar 2026',
+    tag: 'Salud',
+    slug: 'chequeo-oncologico-anual',
+    image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=80',
+  },
+  {
+    title: '¿Cómo elegir el mejor seguro oncológico?',
+    excerpt: 'Guía completa para comparar seguros contra el cáncer: qué buscar, qué preguntar y cómo tomar la mejor decisión.',
+    date: '5 Mar 2026',
+    tag: 'Seguros',
+    slug: 'como-elegir-seguro-oncologico',
+    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80',
+  },
+];
+---
+
+<Page title="Seguro Oncológico Integral">
+  <Hero />
+  <Stats />
+  <HowItWorks />
+  <Coverage />
+  <Plans />
+  <Testimonials />
+
+  <section class="section blog-preview">
+    <div class="container">
+      <div class="blog-header">
+        <div>
+          <p class="section-label">📝 Blog</p>
+          <h2 class="section-title">Artículos de prevención y salud</h2>
+        </div>
+        <a href="/blog" class="btn btn-outline btn-sm">Ver todos los artículos →</a>
+      </div>
+      <div class="blog-grid">
+        {featuredPosts.map(post => (
+          <PostCard {...post} basePath="/blog" />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FAQ />
+  <CTA />
+  <Contact />
+</Page>
+
+<style>
+  .blog-preview { background: var(--color-white); }
+  .blog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  @media (max-width: 768px) {
+    .blog-grid { grid-template-columns: 1fr; }
+  }
+</style>

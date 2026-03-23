@@ -1,0 +1,95 @@
+---
+const faqs = [
+  {
+    q: '¿Hay periodo de carencia?',
+    a: 'No. Tu cobertura se activa desde el día 1 de la contratación. No hay periodos de espera para ningún tipo de tratamiento oncológico.',
+  },
+  {
+    q: '¿Necesito exámenes médicos previos?',
+    a: 'No se requieren exámenes médicos previos para contratar el seguro. Solo necesitas completar una declaración de salud simple.',
+  },
+  {
+    q: '¿Qué tipos de cáncer están cubiertos?',
+    a: 'Todos los tipos de cáncer están cubiertos, incluyendo tumores sólidos y hematológicos. La cobertura incluye diagnóstico, tratamiento y seguimiento.',
+  },
+  {
+    q: '¿Puedo incluir a mi familia?',
+    a: 'Sí, con el Plan Familiar Premium puedes incluir a tu cónyuge e hijos menores de 25 años bajo una misma póliza con cobertura completa.',
+  },
+  {
+    q: '¿Cuáles son las clínicas afiliadas?',
+    a: 'Contamos con una red de más de 120 clínicas y centros oncológicos en todo el Perú, incluyendo el INEN, Clínica Delgado, Clínica Ricardo Palma, entre otros.',
+  },
+  {
+    q: '¿Cómo hago uso de mi seguro?',
+    a: 'Simplemente presenta tu credencial digital en cualquier clínica afiliada. Nuestro equipo coordinará toda la atención sin que tengas que adelantar pagos.',
+  },
+];
+---
+
+<section class="faq section">
+  <div class="container">
+    <div class="section-header center">
+      <p class="section-label">❓ Preguntas Frecuentes</p>
+      <h2 class="section-title">Resolvemos tus dudas</h2>
+    </div>
+    <div class="faq-list">
+      {faqs.map(faq => (
+        <details class="faq-item">
+          <summary class="faq-question">{faq.q}</summary>
+          <p class="faq-answer">{faq.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-list {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .faq-item {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .faq-item[open] {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-md);
+  }
+  .faq-question {
+    padding: 1.25rem 1.5rem;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-primary-dark);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-question::-webkit-details-marker { display: none; }
+  .faq-question::after {
+    content: '+';
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--color-accent);
+    transition: transform 0.2s;
+  }
+  .faq-item[open] .faq-question::after {
+    content: '−';
+  }
+  .faq-answer {
+    padding: 0 1.5rem 1.25rem;
+    font-size: 0.92rem;
+    color: var(--color-text-light);
+    line-height: 1.7;
+  }
+</style>

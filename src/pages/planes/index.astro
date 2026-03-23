@@ -1,0 +1,307 @@
+---
+import Page from '../../layouts/Page.astro';
+
+const plans = [
+  {
+    name: 'Plan Esencial',
+    price: '49',
+    coverage: '500,000',
+    popular: false,
+    color: '#0c4a6e',
+    features: [
+      { text: 'Cobertura máxima: S/ 500,000', included: true },
+      { text: 'Quimioterapia', included: true },
+      { text: 'Radioterapia', included: true },
+      { text: 'Cirugías oncológicas', included: true },
+      { text: 'Exámenes de diagnóstico', included: true },
+      { text: 'Hospitalización', included: true },
+      { text: 'Red de 80+ clínicas', included: true },
+      { text: 'Medicamentos especializados', included: false },
+      { text: 'Inmunoterapia', included: false },
+      { text: 'Segunda opinión médica', included: false },
+      { text: 'Apoyo psicológico', included: false },
+      { text: 'Cobertura internacional', included: false },
+    ],
+  },
+  {
+    name: 'Plan Protección Total',
+    price: '89',
+    coverage: '1,500,000',
+    popular: true,
+    color: '#06b6d4',
+    features: [
+      { text: 'Cobertura máxima: S/ 1,500,000', included: true },
+      { text: 'Quimioterapia', included: true },
+      { text: 'Radioterapia', included: true },
+      { text: 'Cirugías oncológicas', included: true },
+      { text: 'Exámenes de diagnóstico', included: true },
+      { text: 'Hospitalización', included: true },
+      { text: 'Red de 120+ clínicas', included: true },
+      { text: 'Medicamentos especializados', included: true },
+      { text: 'Inmunoterapia', included: false },
+      { text: 'Segunda opinión médica', included: true },
+      { text: 'Apoyo psicológico', included: true },
+      { text: 'Cobertura internacional', included: false },
+    ],
+  },
+  {
+    name: 'Plan Familiar Premium',
+    price: '149',
+    coverage: '3,000,000',
+    popular: false,
+    color: '#8b5cf6',
+    features: [
+      { text: 'Cobertura máxima: S/ 3,000,000', included: true },
+      { text: 'Quimioterapia', included: true },
+      { text: 'Radioterapia', included: true },
+      { text: 'Cirugías oncológicas', included: true },
+      { text: 'Exámenes de diagnóstico', included: true },
+      { text: 'Hospitalización', included: true },
+      { text: 'Red de 120+ clínicas', included: true },
+      { text: 'Medicamentos especializados', included: true },
+      { text: 'Inmunoterapia', included: true },
+      { text: 'Segunda opinión médica internacional', included: true },
+      { text: 'Apoyo psicológico familiar', included: true },
+      { text: 'Cobertura internacional', included: true },
+    ],
+  },
+];
+
+const benefits = [
+  { icon: '⚡', title: 'Activación inmediata', desc: 'Sin periodos de carencia. Tu cobertura inicia desde el primer día.' },
+  { icon: '📋', title: 'Sin exámenes previos', desc: 'Solo necesitas una declaración de salud simple para contratar.' },
+  { icon: '🔄', title: 'Renovación garantizada', desc: 'Tu póliza se renueva automáticamente sin importar tu estado de salud.' },
+  { icon: '🌎', title: 'Cobertura amplia', desc: 'Todos los tipos de cáncer cubiertos, sin exclusiones por tipo.' },
+  { icon: '💰', title: 'Sin copagos', desc: 'No pagas nada adicional al usar tu seguro en clínicas afiliadas.' },
+  { icon: '👨‍👩‍👧‍👦', title: 'Plan familiar', desc: 'Protege a toda tu familia bajo una misma póliza con descuentos.' },
+];
+---
+
+<Page title="Planes y Precios" description="Compara nuestros planes de seguro oncológico. Cobertura desde S/ 49 al mes sin periodos de carencia.">
+  <section class="plans-hero">
+    <div class="container">
+      <p class="section-label">💰 Planes y Precios</p>
+      <h1 class="plans-title">Elige la protección ideal para ti</h1>
+      <p class="plans-subtitle">
+        Todos nuestros planes incluyen cobertura desde el día 1, sin periodos
+        de carencia y sin exámenes médicos previos.
+      </p>
+    </div>
+  </section>
+
+  <section class="plans-section section">
+    <div class="container">
+      <div class="plans-grid">
+        {plans.map(plan => (
+          <div class:list={['plan-card', { popular: plan.popular }]}>
+            {plan.popular && <div class="popular-tag">Recomendado</div>}
+            <div class="plan-top" style={`border-top: 4px solid ${plan.color}`}>
+              <h2 class="plan-name">{plan.name}</h2>
+              <p class="plan-cov">Cobertura hasta S/ {plan.coverage}</p>
+              <div class="plan-price">
+                <span class="p-currency">S/</span>
+                <span class="p-amount">{plan.price}</span>
+                <span class="p-period">/mes</span>
+              </div>
+            </div>
+            <ul class="plan-features">
+              {plan.features.map(f => (
+                <li class:list={[f.included ? 'yes' : 'no']}>
+                  <span class="check">{f.included ? '✓' : '✗'}</span>
+                  {f.text}
+                </li>
+              ))}
+            </ul>
+            <div class="plan-action">
+              <a
+                href="#contacto-planes"
+                class:list={['btn', plan.popular ? 'btn-accent' : 'btn-outline']}
+                style="width:100%;justify-content:center;"
+              >
+                Solicitar Este Plan
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits section">
+    <div class="container">
+      <div class="section-header center">
+        <p class="section-label">✨ Beneficios</p>
+        <h2 class="section-title">Incluido en todos los planes</h2>
+      </div>
+      <div class="benefits-grid">
+        {benefits.map(b => (
+          <div class="benefit-card">
+            <span class="benefit-icon">{b.icon}</span>
+            <h3 class="benefit-title">{b.title}</h3>
+            <p class="benefit-desc">{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-plans section" id="contacto-planes">
+    <div class="container">
+      <div class="cta-box">
+        <h2>¿Necesitas ayuda para elegir?</h2>
+        <p>Nuestros asesores te ayudarán a encontrar el plan perfecto para tu situación.</p>
+        <div class="cta-actions">
+          <a href="tel:017005000" class="btn btn-white">📞 (01) 700-5000</a>
+          <a href="/#contacto" class="btn btn-outline-w">Enviar Consulta</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Page>
+
+<style>
+  .plans-hero {
+    padding: 8rem 0 3rem;
+    background: linear-gradient(180deg, var(--color-light), var(--color-white));
+    text-align: center;
+  }
+  .plans-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-primary-dark);
+    margin-bottom: 1rem;
+  }
+  .plans-subtitle {
+    font-size: 1.05rem;
+    color: var(--color-text-light);
+    max-width: 550px;
+    margin: 0 auto;
+  }
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+  .plan-card {
+    background: var(--color-white);
+    border: 2px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .plan-card:hover { box-shadow: var(--shadow-xl); transform: translateY(-4px); }
+  .plan-card.popular {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-xl);
+    transform: scale(1.02);
+  }
+  .plan-card.popular:hover { transform: scale(1.04) translateY(-4px); }
+  .popular-tag {
+    position: absolute;
+    top: 16px;
+    right: -30px;
+    background: var(--color-accent);
+    color: var(--color-white);
+    padding: 0.25rem 2.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transform: rotate(45deg);
+  }
+  .plan-top { padding: 2rem 2rem 1.5rem; }
+  .plan-name {
+    font-size: 1.4rem;
+    color: var(--color-primary-dark);
+    margin-bottom: 0.25rem;
+  }
+  .plan-cov {
+    font-size: 0.82rem;
+    color: var(--color-text-light);
+    margin-bottom: 1rem;
+  }
+  .plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.1rem;
+  }
+  .p-currency { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; color: var(--color-primary-dark); }
+  .p-amount { font-family: var(--font-heading); font-size: 3.5rem; font-weight: 800; color: var(--color-primary-dark); line-height: 1; }
+  .p-period { font-size: 0.9rem; color: var(--color-gray-500); }
+  .plan-features {
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-top: 1px solid var(--color-gray-200);
+    padding-top: 1.5rem;
+  }
+  .plan-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+  }
+  .plan-features .yes { color: var(--color-gray-700); }
+  .plan-features .no { color: var(--color-gray-400); }
+  .plan-features .yes .check { color: var(--color-success); font-weight: 700; }
+  .plan-features .no .check { color: var(--color-gray-400); }
+  .plan-action { padding: 1.5rem 2rem 2rem; }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .benefit-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: var(--radius-md);
+    background: var(--color-gray-50);
+    border: 1px solid var(--color-gray-100);
+  }
+  .benefit-icon { font-size: 2rem; display: block; margin-bottom: 0.75rem; }
+  .benefit-title { font-size: 1rem; color: var(--color-primary-dark); margin-bottom: 0.4rem; }
+  .benefit-desc { font-size: 0.85rem; color: var(--color-text-light); line-height: 1.6; }
+
+  .cta-plans { background: var(--color-white); padding-bottom: 5rem; }
+  .cta-box {
+    background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+    padding: 3.5rem;
+    border-radius: var(--radius-xl);
+    text-align: center;
+    color: var(--color-white);
+  }
+  .cta-box h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+  }
+  .cta-box p {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 1.5rem;
+  }
+  .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-outline-w {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    border: 2px solid rgba(255,255,255,0.4);
+    color: var(--color-white);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .btn-outline-w:hover { background: rgba(255,255,255,0.1); border-color: var(--color-white); }
+
+  @media (max-width: 768px) {
+    .plans-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+    .plan-card.popular { transform: none; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .cta-box { padding: 2rem; }
+  }
+</style>

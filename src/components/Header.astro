@@ -1,0 +1,166 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Inicio' },
+  { href: '/planes', label: 'Planes' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/noticias', label: 'Noticias' },
+  { href: '/#contacto', label: 'Contacto' },
+];
+---
+
+<header class="header" id="top">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <span class="logo-shield">🛡</span>
+      <div>
+        <span class="logo-name">VidaSegura</span>
+        <span class="logo-tag">Seguro Oncológico</span>
+      </div>
+    </a>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" id="nav">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class:list={['nav-link', { active: currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href)) }]}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a href="/planes" class="btn btn-accent btn-sm">Cotizar Ahora</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('menuBtn');
+  const nav = document.getElementById('nav');
+  btn?.addEventListener('click', () => {
+    nav?.classList.toggle('open');
+    btn.classList.toggle('open');
+  });
+  nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    btn?.classList.remove('open');
+  }));
+  window.addEventListener('scroll', () => {
+    document.querySelector('.header')?.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.3s;
+    border-bottom: 1px solid transparent;
+  }
+  .header.scrolled {
+    background: rgba(255,255,255,0.97);
+    border-bottom-color: var(--color-gray-200);
+    box-shadow: var(--shadow-sm);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .logo-shield { font-size: 1.8rem; }
+  .logo-name {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-primary-dark);
+    display: block;
+    line-height: 1.2;
+  }
+  .logo-tag {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 1.75rem;
+  }
+  .nav-link {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--color-gray-600);
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-link:hover, .nav-link.active {
+    color: var(--color-primary);
+  }
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--color-accent);
+    border-radius: 1px;
+  }
+  .menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .menu-btn span {
+    width: 24px;
+    height: 2px;
+    background: var(--color-gray-700);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .menu-btn.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+  .menu-btn.open span:nth-child(2) { opacity: 0; }
+  .menu-btn.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+  @media (max-width: 768px) {
+    .menu-btn { display: flex; }
+    .nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--color-white);
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 5rem 2rem;
+      gap: 1.25rem;
+      transition: right 0.3s;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+    }
+    .nav.open { right: 0; }
+    .nav-link { font-size: 1rem; }
+  }
+</style>

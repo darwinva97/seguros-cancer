@@ -1,0 +1,104 @@
+---
+import Page from '../../layouts/Page.astro';
+import PostCard from '../../components/PostCard.astro';
+
+const noticias = [
+  {
+    title: 'MINSA amplía cobertura oncológica para asegurados del SIS',
+    excerpt: 'El Ministerio de Salud anunció la ampliación de la cobertura oncológica del Seguro Integral de Salud, beneficiando a más de 2 millones de peruanos.',
+    date: '20 Mar 2026',
+    tag: 'Gobierno',
+    slug: 'minsa-amplia-cobertura-oncologica',
+    image: 'https://images.unsplash.com/photo-1504813184591-01572f98c85f?w=600&q=80',
+  },
+  {
+    title: 'Nuevo centro oncológico de alta complejidad abre en Lima Norte',
+    excerpt: 'El Instituto Regional de Enfermedades Neoplásicas inauguró su nueva sede en Lima Norte con equipamiento de última generación.',
+    date: '18 Mar 2026',
+    tag: 'Infraestructura',
+    slug: 'centro-oncologico-lima-norte',
+    image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80',
+  },
+  {
+    title: 'Avance en inmunoterapia: nuevo tratamiento aprobado para cáncer de pulmón',
+    excerpt: 'La DIGEMID aprobó un nuevo medicamento de inmunoterapia que ha demostrado reducir la progresión del cáncer de pulmón en un 40%.',
+    date: '14 Mar 2026',
+    tag: 'Ciencia',
+    slug: 'inmunoterapia-cancer-pulmon',
+    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80',
+  },
+  {
+    title: 'Campaña gratuita de despistaje de cáncer en Lima Metropolitana',
+    excerpt: 'La Liga Peruana de Lucha Contra el Cáncer realizará campañas gratuitas de despistaje en 15 distritos de Lima durante todo el mes de abril.',
+    date: '10 Mar 2026',
+    tag: 'Campañas',
+    slug: 'campana-despistaje-cancer-lima',
+    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80',
+  },
+  {
+    title: 'Perú registra aumento en detección temprana de cáncer de mama',
+    excerpt: 'Las cifras del INEN muestran un incremento del 25% en la detección temprana de cáncer de mama durante el último año gracias a programas preventivos.',
+    date: '5 Mar 2026',
+    tag: 'Estadísticas',
+    slug: 'aumento-deteccion-cancer-mama',
+    image: 'https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=600&q=80',
+  },
+  {
+    title: 'SBS establece nuevos estándares para seguros oncológicos',
+    excerpt: 'La Superintendencia de Banca y Seguros publicó nuevas normas que establecen coberturas mínimas para los seguros oncológicos en el Perú.',
+    date: '1 Mar 2026',
+    tag: 'Regulación',
+    slug: 'sbs-estandares-seguros-oncologicos',
+    image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80',
+  },
+];
+---
+
+<Page title="Noticias" description="Últimas noticias sobre cáncer, avances médicos, regulación de seguros oncológicos y campañas de prevención en el Perú.">
+  <section class="noticias-hero">
+    <div class="container">
+      <p class="section-label">📰 Noticias</p>
+      <h1 class="noticias-title">Actualidad oncológica</h1>
+      <p class="noticias-subtitle">
+        Mantente informado sobre avances médicos, regulaciones, campañas de
+        prevención y todo lo relevante en el mundo de la oncología en el Perú.
+      </p>
+    </div>
+  </section>
+
+  <section class="noticias-list section">
+    <div class="container">
+      <div class="noticias-grid">
+        {noticias.map(noticia => (
+          <PostCard {...noticia} basePath="/noticias" />
+        ))}
+      </div>
+    </div>
+  </section>
+</Page>
+
+<style>
+  .noticias-hero {
+    padding: 8rem 0 3rem;
+    background: linear-gradient(180deg, var(--color-light), var(--color-white));
+    text-align: center;
+  }
+  .noticias-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-primary-dark);
+    margin-bottom: 1rem;
+  }
+  .noticias-subtitle {
+    font-size: 1.05rem;
+    color: var(--color-text-light);
+    max-width: 550px;
+    margin: 0 auto;
+  }
+  .noticias-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  @media (max-width: 1024px) { .noticias-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 768px) { .noticias-grid { grid-template-columns: 1fr; } }
+</style>

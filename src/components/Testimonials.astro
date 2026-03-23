@@ -1,0 +1,105 @@
+---
+const testimonials = [
+  {
+    quote: 'Cuando recibí el diagnóstico, lo primero que pensé fue en los gastos. Gracias a VidaSegura pude enfocarme en mi recuperación sin preocuparme por el aspecto económico.',
+    name: 'María del Carmen R.',
+    detail: 'Asegurada desde 2022',
+    avatar: '👩',
+  },
+  {
+    quote: 'El proceso de atención fue impecable. Desde el primer día tuve acceso a los mejores oncólogos y mi tratamiento comenzó de inmediato. Hoy estoy libre de cáncer.',
+    name: 'José Luis P.',
+    detail: 'Asegurado desde 2021',
+    avatar: '👨',
+  },
+  {
+    quote: 'Aseguré a toda mi familia con el plan Premium. La tranquilidad de saber que están protegidos no tiene precio. El servicio de apoyo psicológico fue fundamental.',
+    name: 'Carmen Lucía T.',
+    detail: 'Plan Familiar Premium',
+    avatar: '👩',
+  },
+];
+---
+
+<section class="testimonials section">
+  <div class="container">
+    <div class="section-header center">
+      <p class="section-label">💬 Testimonios</p>
+      <h2 class="section-title">Historias de protección real</h2>
+      <p class="section-subtitle">Miles de familias ya confían en VidaSegura para su protección oncológica.</p>
+    </div>
+    <div class="testimonials-grid">
+      {testimonials.map(t => (
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-quote">{t.quote}</p>
+          <div class="testimonial-author">
+            <span class="author-avatar">{t.avatar}</span>
+            <div>
+              <p class="author-name">{t.name}</p>
+              <p class="author-detail">{t.detail}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials { background: var(--color-gray-50); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .testimonial-card {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-gray-100);
+    box-shadow: var(--shadow-sm);
+  }
+  .stars {
+    color: var(--color-warning);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+  }
+  .testimonial-quote {
+    font-size: 0.92rem;
+    color: var(--color-gray-600);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-top: 1px solid var(--color-gray-100);
+    padding-top: 1.25rem;
+  }
+  .author-avatar {
+    font-size: 2rem;
+    background: var(--color-light);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+  }
+  .author-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-primary-dark);
+  }
+  .author-detail {
+    font-size: 0.78rem;
+    color: var(--color-text-light);
+  }
+  @media (max-width: 768px) {
+    .testimonials-grid { grid-template-columns: 1fr; }
+  }
+</style>
